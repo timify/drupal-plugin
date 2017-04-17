@@ -1,0 +1,187 @@
+<?php
+/**
+ * @file
+ * A main file of the widget
+ */
+
+ /**
+  * Implements hook_help().
+  *
+  * Displays help and module information.
+  *
+  * @param path
+  *   Which path of the site we're using to display help
+  * @param arg
+  *   Array that holds the current path as returned from arg() function
+  */
+ function timify_widget_help($path, $arg) {
+   switch ($path) {
+     case "admin/help#timify_widget":
+       return t("Display Timify Booking Widget");
+       break;
+   }
+ }
+
+ /**
+ * Implements hook_menu().
+ */
+function timify_widget_menu() {
+  $items          = array();
+
+  $items['admin/config/content/timify_widget'] = array(
+    'title'             => 'Timify Widget',
+    'description'       => 'Configuration for Timify Booking Widget',
+    'page callback'     => 'drupal_get_form',
+    'page arguments'    => array('timify_widget_form'),
+    'access arguments'  => array('access administration pages'),
+    'type'              => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback: Timify Widget settings
+ *
+ * @see timify_widget_menu()
+ */
+function timify_widget_form($form, &$form_state) {
+  $form['timify_widget_id'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('Your Timify ID'),
+    '#default_value'  => variable_get('timify_widget_id'),
+    '#size'           => 20,
+    '#description'    => t('Fill here your Timify ID.'),
+    '#required'       => TRUE,
+  );
+  $form['timify_widget_language'] = array(
+    '#type'           => 'select',
+    '#title'          => t('Language'),
+    '#default_value'  => variable_get('timify_widget_language', 'en'),
+    '#options'        => array(
+      'de'			         => 'Deutschland',
+      'en'			         => 'English',
+      'ee'			         => 'Eesti',
+      'es'			         => 'España',
+      'fr'			         => 'France',
+      'hu'			         => 'Hungary',
+      'it'			         => 'Italia',
+      'nl'			         => 'Nederland',
+      'ru'			         => 'Россия',
+      'zh'			         => '台灣',
+      'ph'			         => 'Philippines',
+    ),
+    '#description'    => t('Choose a language for your timify booking widget.'),
+    '#required'       => TRUE,
+  );
+  $form['timify_widget_position'] = array(
+    '#type'           => 'select',
+    '#title'          => t('Position'),
+    '#default_value'  => variable_get('timify_widget_position', 'left'),
+    '#options'        => array(
+      'left'			       => t('Left side'),
+      'right'			       => t('Right side'),
+      'after_post'			 => t('After post'),
+    ),
+    '#description'    => t('Specify position of the booking widget'),
+    '#required'       => TRUE,
+  );
+  $form['timify_widget_button_label'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('Label of the button'),
+    '#default_value'  => variable_get('timify_widget_button_label', t('Book an appointment')),
+    '#size'           => 20,
+    '#description'    => t('Specify label of the button. The button will be shown if the position is not in left or right side.'),
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Implements hook_init().
+ *
+ * Displays timify widget javascript at the end of each page.
+ */
+function timify_widget_init() {
+
+  if (!path_is_admin(current_path())) {
+
+    $timifyWidgetId           = variable_get('timify_widget_id', '');
+    $timifyWidgetLanguage     = variable_get('timify_widget_language', 'de');
+    $timifyWidgetPosition     = variable_get('timify_widget_position', 'left');
+
+    if ($timifyWidgetId != '') {
+      drupal_add_js('window.onload = function () {
+            var script = document.createElement("script");
+            script.src = "https://widget.timify.com/js/widget.js";
+            script.setAttribute("async", "");
+            script.setAttribute("id", "timify");' .
+            ($timifyWidgetPosition == 'left' || $timifyWidgetPosition == 'right' ?
+              'script.setAttribute("data-id", "' . html_entity_decode($timifyWidgetId, ENT_QUOTES, 'utf-8') . '");' :
+                '') . '
+            script.setAttribute("data-lang", "' . $timifyWidgetLanguage . '");
+            script.setAttribute("data-position", "' . ($timifyWidgetPosition == 'left' || $timifyWidgetPosition == 'right' ? $timifyWidgetPosition : 'multiple') . '");
+            document.getElementsByTagName("body")[0].appendChild(script);
+          };',
+          array(
+            'type'    => 'inline',
+            'scope'   => 'footer',
+            'weight'  => 5
+          )
+      );
+    }
+  }
+
+}
+
+/**
+ * Implements hook_page_build().
+ *
+ * Displays timify widget element at the end of each page.
+ */
+function timify_widget_page_build(&$page) {
+
+  if (!path_is_admin(current_path())) {
+
+    $timifyWidgetId           = variable_get('timify_widget_id', '');
+    $timifyWidgetLanguage     = variable_get('timify_widget_language', 'de');
+    $timifyWidgetPosition     = variable_get('timify_widget_position', 'left');
+    $timifyWidgetButtonLabel  = variable_get('timify_widget_button_label', 'Book an appointment');
+
+    if (menu_get_object('node', 1) && $timifyWidgetId != '' && $timifyWidgetPosition == 'after_post') {
+
+      if (isset($page['content']['system_main']['nodes']) &&
+          is_array($page['content']['system_main']['nodes']) &&
+          count($page['content']['system_main']['nodes']) > 0) {
+
+            $content                = array_shift($page['content']['system_main']['nodes']);
+            if (is_array($content) && count($content) > 0) {
+              $newContent           = array();
+              foreach ($content as $key => $value) {
+                if ($key == 'comments') {
+                  $newContent['timifyWidget']  = array(
+                    '#markup' => '<button class="timify-button" data-id="' . $timifyWidgetId . '" style="height: 40px; background: #ca3b43; color: #fff; font-size: 14px; font-weight: normal; text-transform: uppercase; border: 0; padding: 0 15px; cursor: pointer; border-radius: 3px;">' .
+                          					$timifyWidgetButtonLabel .
+                          			 '</button>',
+                    '#weight' => 77,
+                  );
+                }
+                $newContent[$key]   = $value;
+              }
+
+              array_unshift($page['content']['system_main']['nodes'], $newContent);
+            }
+      }
+      else {
+        $page['content']['timifyWidgetContainer'] = array(
+          '#markup' => '<button class="timify-button" data-id="' . $timifyWidgetId . '" style="height: 40px; background: #ca3b43; color: #fff; font-size: 14px; font-weight: normal; text-transform: uppercase; border: 0; padding: 0 15px; cursor: pointer; border-radius: 3px;">' .
+                					$timifyWidgetButtonLabel .
+                			 '</button>',
+          '#weight' => 77,
+        );
+      }
+
+    }
+
+  }
+}
