@@ -1,0 +1,7 @@
+timify_widget.settings.form:
+  path: '/admin/config/content/timifywidget'
+  defaults:
+    _form: 'Drupal\timify_widget\Form\TimifyWidgetSettingsForm'
+    _title: 'Timify Widget'
+  requirements:
+    _permission: 'administer site configuration'

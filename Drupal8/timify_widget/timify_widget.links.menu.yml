@@ -1,0 +1,5 @@
+timify_widget.settings.form:
+  title: 'Timify Widget Settings'
+  description: 'Set up your Timify Widget.'
+  route_name: timify_widget.settings.form
+  parent: system.admin_config_content

@@ -1,0 +1,5 @@
+name: 'Timify Widget'
+description: 'Easy init Timify Booking Widget in your website.'
+core: 8.x
+type: module
+package: 'Timify'

@@ -1,0 +1,6 @@
+timify_widget:
+  version: 1.0.0
+  js:
+    js/timify_widget.js: {}
+  dependencies:
+    - core/drupalSettings

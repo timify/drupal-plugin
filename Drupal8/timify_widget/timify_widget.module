@@ -1,0 +1,48 @@
+<?php
+
+/**
+ *  Implement hook_page_attachments().
+ *
+ * Displays timify widget javascript at the end of each page.
+ */
+function timify_widget_page_attachments(array &$page) {
+
+  try {
+    $route                  = \Drupal::routeMatch()->getRouteObject();
+    $isAdminRoute           = \Drupal::service('router.admin_context')->isAdminRoute($route);
+    $hasNodeOperationOption = $route->getOption('_node_operation_route');
+    $isAdmin                = ($isAdminRoute || $hasNodeOperationOption);
+
+    if (!$isAdmin) {
+      $timifyWidgetId           = \Drupal::config('timify_widget.settings.form')->get('timify_widget_id');
+      $timifyWidgetLanguage     = \Drupal::config('timify_widget.settings.form')->get('timify_widget_language');
+      $timifyWidgetPosition     = \Drupal::config('timify_widget.settings.form')->get('timify_widget_position');
+      $timifyWidgetButtonLabel  = \Drupal::config('timify_widget.settings.form')->get('timify_widget_button_label');
+
+      $page['#attached']['library'][]                                       = 'timify_widget/timify_widget';
+      $page['#attached']['drupalSettings']['timify_widget']['id']           = $timifyWidgetId;
+      $page['#attached']['drupalSettings']['timify_widget']['language']     = $timifyWidgetLanguage;
+      $page['#attached']['drupalSettings']['timify_widget']['position']     = $timifyWidgetPosition;
+      $page['#attached']['drupalSettings']['timify_widget']['button_label'] = $timifyWidgetButtonLabel;
+    }
+  }
+  catch (Exception $e) {
+
+  }
+}
+
+/**
+ * Implements hook_theme()
+ */
+function timify_widget_theme() {
+  return [
+    'timify_widget_button'  => [
+      'variables'     => [
+        'timify_id'                   => NULL,
+        'timify_widget_language'      => NULL,
+        'timify_widget_position'      => NULL,
+        'timify_widget_button_label'  => NULL
+      ],
+    ],
+  ];
+}
