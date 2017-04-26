@@ -22,15 +22,15 @@ Once you’ve downloaded the zip file you will have to unzip it and upload the f
 
 ### Step 3
 
-Next, login to your drupal website as an administrator in order to install the plugin. In the navigation, click the menu item “Modules” then scroll down to the “Other” section and there you will find an item called "TIMIFY Widget". Click the checkbox under "Enable" and than click "Save configuration" . Now your TIMIFY booking widget is installed.
+Next, login to your drupal website as an administrator in order to install the plugin. In the navigation, click the menu item **“Modules”** then scroll down to the “Other” section and there you will find an item called **"TIMIFY Widget"**. Click the checkbox under **"Enable"** and than click **"Save configuration"** . Now your TIMIFY booking widget is installed.
 
 ### Step 4
 
-Next to "TIMIFY Widget" click on the “Configure” button.
+Next to "TIMIFY Widget" click on the **“Configure”** button.
 
 ### Step 5
 
-Copy your booking ID from the TIMIFY Web App and paste it in "Your TIMIFY ID" field in Drupal. You will find your booking ID in the TIMIFY Web App at the bottom of the page “Booking buttons”  in the section “Online booking”.
+Copy your booking ID from the TIMIFY Web App and paste it in **"Your TIMIFY ID"** field in Drupal. You will find your booking ID in the TIMIFY Web App at the bottom of the page **“Booking buttons”**  in the section **“Online booking”**.
 
 ### Step 6
 
@@ -60,15 +60,15 @@ Once you’ve downloaded the zip file you’ll have to unzip it and upload the f
 
 ### Step 3
 
-Next, login to your Drupal website as administrator in order to install the plugin. In the navigation, click the menu item “Extend” then click the submenu "List". Scroll down and find“TIMIFY Widget”. Click the checkbox and click the "Install" button.
+Next, login to your Drupal website as administrator in order to install the plugin. In the navigation, click the menu item **“Extend”** then click the submenu **"List"**. Scroll down and find **“TIMIFY Widget”**. Click the checkbox and click the **"Install"** button.
 
 ### Step 4
 
-Once the "TIMIFY Widget" module has been installed go to “Configure” then scroll down and find a section called“Content Authoring” and click on the "TIMIFY Widget Settings" button.
+Once the **"TIMIFY Widget"** module has been installed go to **“Configure”** then scroll down and find a section called **“Content Authoring”** and click on the **"TIMIFY Widget Settings"** button.
 
 ### Step 5
 
-Copy your booking ID from the TIMIFY Web App and paste it in "Your TIMIFY ID" field in Drupal. You will find your booking ID in the TIMIFY Web App at the bottom of the page “Booking buttons”  in the section “Online booking”.
+Copy your booking ID from the TIMIFY Web App and paste it in **"Your TIMIFY ID"** field in Drupal. You will find your booking ID in the TIMIFY Web App at the bottom of the page **“Booking buttons”**  in the section **“Online booking”**.
 
 ### Step 6
 
@@ -77,8 +77,8 @@ Last but not least define the position of the button. We offer you three options
 - button on the right & button on the left, which will show always on all your pages
 - use it as a block element 
 
-> PLEASE NOTE:
-> If you’ve selected "Use it as a Block element" you need to go to "Structure" and then select "Block layout". From there you > can define where the plugin should appear.
+> **PLEASE NOTE:**
+> If you’ve selected **"Use it as a Block element"** you need to go to **"Structure"** and then select **"Block layout"**. From there you can define where the plugin should appear.
      
 ### Step 7
 
