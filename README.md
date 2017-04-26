@@ -24,6 +24,8 @@ Once you’ve downloaded the zip file you will have to unzip it and upload the f
 
 Next, login to your drupal website as an administrator in order to install the plugin. In the navigation, click the menu item **“Modules”** then scroll down to the “Other” section and there you will find an item called **"TIMIFY Widget"**. Click the checkbox under **"Enable"** and than click **"Save configuration"** . Now your TIMIFY booking widget is installed.
 
+![Image](http://www.clients.webmedia7.com/timify/cms-plugins-github/drupal7-timify-booking-0.png)
+
 ### Step 4
 
 Next to "TIMIFY Widget" click on the **“Configure”** button.
@@ -62,9 +64,15 @@ Once you’ve downloaded the zip file you’ll have to unzip it and upload the f
 
 Next, login to your Drupal website as administrator in order to install the plugin. In the navigation, click the menu item **“Extend”** then click the submenu **"List"**. Scroll down and find **“TIMIFY Widget”**. Click the checkbox and click the **"Install"** button.
 
+![Image](http://www.clients.webmedia7.com/timify/cms-plugins-github/drupal8-timify-booking-1.png)
+
+![Image](http://www.clients.webmedia7.com/timify/cms-plugins-github/drupal8-timify-booking-2.png)
+
 ### Step 4
 
 Once the **"TIMIFY Widget"** module has been installed go to **“Configure”** then scroll down and find a section called **“Content Authoring”** and click on the **"TIMIFY Widget Settings"** button.
+
+![Image](http://www.clients.webmedia7.com/timify/cms-plugins-github/drupal8-timify-booking-3.png)
 
 ### Step 5
 
