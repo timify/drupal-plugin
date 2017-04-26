@@ -10,3 +10,4 @@ The installation of the plugin is pretty easy. Simply follow the steps bellow:
 
 First, you should download the latest version of the Drupal plugin. Simply click the download button in the web application or you can download the latest version from the link bellow. It's advisable to always have the latest plugin version so come around from time to time to see if you're still working with the latest version.
 
+[Download now](https://github.com/timify/drupal-plugin/archive/master.zip)
