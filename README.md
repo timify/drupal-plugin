@@ -47,6 +47,7 @@ Additionally you have the option to define the main language the widget should b
 
 ### That's it!
 
+---
 
 ## Installation steps for Drupal8?
 
