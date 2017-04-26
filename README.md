@@ -2,6 +2,10 @@
 
 This plugin installs the TIMIFY booking widget to your Drupal website. You can define the type, position and language of the button in the settings page of the plugin directly in your Drupal admin panel.
 
+## What Drupal versions are supported?
+
+This plugin supports Drupal7 and Drupal8.
+
 ## How it works?
 
 The installation of the plugin is pretty easy. Simply follow the steps bellow:
