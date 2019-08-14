@@ -1,6 +1,6 @@
 name = Timify Widget
 description = Easy init Timify Booking Widget in your website.
 core = 7.x
-version = 1.0.0
+version = 2.0.0
 
 configure = admin/config/content/timify_widget
